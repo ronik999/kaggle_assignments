@@ -1,7 +1,7 @@
-kaggle_assignments
+testing_error_kaggle
 ==============================
 
-adding kaggle assignments
+A short description of the project.
 
 Project Organization
 ------------

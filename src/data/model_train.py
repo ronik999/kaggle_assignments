@@ -5,6 +5,8 @@ from xgboost import XGBClassifier
 import pickle
 import warnings
 import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve
 warnings.filterwarnings('ignore')
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -28,7 +30,7 @@ def get_score_values(scores, model_name):
     print("AUC score: " + str(scores['test_roc_auc'].mean()) + " +- " + str(scores['test_roc_auc'].std()))
 
 
-def perform_model_train(model, X_train, y_train, split_size, save_model):
+def perform_model_train(model, X_train, y_train, split_size, save_model, save_name):
 
     # add model, X_train, y_train and split size for cross-validation
     cv = StratifiedKFold(n_splits=split_size, random_state=1, shuffle=True)
@@ -37,7 +39,22 @@ def perform_model_train(model, X_train, y_train, split_size, save_model):
     get_score_values(cross_val, model)
     if save_model == True:
         model.fit(X_train, y_train)
-        filename = '../models/at1_week3_model/model_' + str(model)[:5] + ".sav"
+        filename = '../models/at1_week4_model/model_' + str(save_name) + ".sav"
         pickle.dump(model, open(filename, 'wb'))
         print("SAVED MODEL")
 
+def plot_roc(X_val, y_val, model):
+    no_score_probability = [0 for _ in range(len(y_val))]
+    pred_probability = model.predict_proba(X_val)[:, 1]
+    no_score_fpr, no_score_tpr, _ = roc_curve(y_val, no_score_probability)
+    model_fpr, model_tpr, _ = roc_curve(y_val, pred_probability)
+    # plot the roc curve for the model
+    plt.plot(no_score_fpr, no_score_tpr, linestyle='--', label='No Skill')
+    plt.plot(model_fpr, model_tpr, marker='.', label='')
+    # axis labels
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    # show the legend
+    plt.legend()
+    # show the plot
+    plt.show()

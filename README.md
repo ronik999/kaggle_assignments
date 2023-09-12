@@ -3,6 +3,13 @@ Kaggle Assignments
 
 All of the Kaggle assignments are updated in this repository.
 
+STEPS:
+==========
+-Install all of the requirements for resolving the dependencies issues from the requirements.txt file. 
+-All notebooks and data follow the project organization as described below.
+-Scores are saved in a csv file inside the model folder according to each week of updated works.
+-Models are saved inside the models folder with different numbers of model used for each week.
+
 
 Project Organization
 ------------

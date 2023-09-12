@@ -1,7 +1,8 @@
-testing_error_kaggle
+Kaggle Assignments
 ==============================
 
-A short description of the project.
+All of the Kaggle assignments are updated in this repository.
+
 
 Project Organization
 ------------

@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "kaggle-assignments-package"
+version = "0.1.0"
+description = ""
+authors = ["ronik <ronik.carkey@gmail.com>"]
+readme = "README.md"
+packages = [{include = "kaggle_assignments_package"}]
+
+[tool.poetry.dependencies]
+python = "3.9.13"
+pandas = "^2.1.0"
+jupyterlab = "^4.0.5"
+scikit-learn = "^1.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
